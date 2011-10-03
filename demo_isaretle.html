@@ -2,35 +2,91 @@
    "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-	<title>jQuery maphilight documentation</title>
-	<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="../jquery.maphilight.js"></script>
-	<script>$(function() {
-		$('.map').maphilight({fade: false});
-	});</script>
-<!--
-	 <script src="http://code.jquery.com/jquery-latest.js"></script>
--->
- <style>
- p { cursor:pointer; }
-</style>
-</head>
-<body>
+  <title>jQuery maphilight documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="../jquery.maphilight.js"></script>
+  <script>
+          $(function() {
+              $('.map').maphilight({fade: false});
+          });
+  </script>
+<!-- x ve y al -->
+<script type="text/javascript" language=javascript>
+  function FindPosition(oElement)
+  {
+    if(typeof( oElement.offsetParent ) != "undefined")
+    {
+      for(var posX = 0, posY = 0; oElement; oElement = oElement.offsetParent)
+      {
+        posX += oElement.offsetLeft;
+        posY += oElement.offsetTop;
+      }
+        return [ posX, posY ];
+      }
+      else
+      {
+        return [ oElement.x, oElement.y ];
+      }
+  }
 
-<img class="map" src="isaretsiz.jpg"   usemap="#world">
-<map name="world">
-<input id="gizli_deger" type="hidden" value="4,3,62,9,54,24,17,37,3,3; 76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25"/>
-<p>
-<area  shape="poly"  alt="sec1"  coords="4,3,62,9,54,24,17,37,3,3; 76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25" />
-</p>
-</map>
-<input id="sonuc"/>
-<script>
-	$("p").click(function () {
-      var htmlStr = $("#gizli_deger").val();
-      $("#sonuc").val("sonucumuz");
-    });	
+  function GetCoordinates(e)
+  {
+    var PosX = 0;
+    var PosY = 0;
+    var ImgPos;
+    ImgPos = FindPosition(myImg);
+    if (!e) var e = window.event;
+    if (e.pageX || e.pageY)
+    {
+      PosX = e.pageX;
+      PosY = e.pageY;
+    }
+    else if (e.clientX || e.clientY)
+      {
+        PosX = e.clientX + document.body.scrollLeft
+          + document.documentElement.scrollLeft;
+        PosY = e.clientY + document.body.scrollTop
+          + document.documentElement.scrollTop;
+      }
+    PosX = PosX - ImgPos[0];
+    PosY = PosY - ImgPos[1];
+    document.getElementById("x").value = PosX;
+    document.getElementById("y").value = PosY;
+  }
 </script>
+<!-- end x ve y al -->
+</head>
+<style>p { cursor:pointer; }</style>
+<body style="background-color:white" padding="0" margin="0">
+  <img id="myImgId" class="map" src="isaretsiz.jpg" usemap="#resim">
+<script type="text/javascript">
+  var myImg = document.getElementById("myImgId");
+  myImg.onmousedown = GetCoordinates;
+</script>
+  <form action="show.php" method="post">
+    <map name="resim">
+    <input id="gizli_deger" type="hidden" value="4,3,62,9,54,24,17,37,3,3; 
+    76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25"/>
+    <p>
+    <area  shape="poly"  alt="sec1"  coords="4,3,62,9,54,24,17,37,3,3; 
+    76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25" />
+    </p>
+    </map>
+    <input id="x"/>
+  <input id="y"/>
+    <input id="sonuc" name="sonuc"/>
+    <input type="submit" value="Göster"/>
+  </form>
+<script>
+    $("p").click(function () {
+      var htmlStr = $("#gizli_deger").val();
+      $("#sonuc").val(htmlStr);
+    });
 
+    $("img").click(function () {
+      $("#sonuc").val("");
+    });
+</script>
 </body>
 </html>
