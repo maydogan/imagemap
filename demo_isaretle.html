@@ -11,8 +11,8 @@
               $('.map').maphilight({fade: false});
           });
   </script>
-<!-- x ve y al -->
-<script type="text/javascript" language=javascript>
+  <!-- x ve y al -->
+  <script type="text/javascript" language=javascript>
   function FindPosition(oElement)
   {
     if(typeof( oElement.offsetParent ) != "undefined")
@@ -60,21 +60,19 @@
 <style>p { cursor:pointer; }</style>
 <body style="background-color:white" padding="0" margin="0">
   <img id="myImgId" class="map" src="isaretsiz.jpg" usemap="#resim">
-<script type="text/javascript">
-  var myImg = document.getElementById("myImgId");
-  myImg.onmousedown = GetCoordinates;
-</script>
+  <script type="text/javascript">
+    var myImg = document.getElementById("myImgId");
+    myImg.onmousedown = GetCoordinates;
+  </script>
   <form action="show.php" method="post">
     <map name="resim">
-    <input id="gizli_deger" type="hidden" value="4,3,62,9,54,24,17,37,3,3; 
-    76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25"/>
+    <input id="gizli_deger" type="hidden" value="4,3,62,9,54,24,17,37,3,3;76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25"/>
     <p>
-    <area  shape="poly"  alt="sec1"  coords="4,3,62,9,54,24,17,37,3,3; 
-    76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25" />
+      <area  shape="poly"  alt="sec1"  coords="4,3,62,9,54,24,17,37,3,3;76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25" />
     </p>
     </map>
     <input id="x"/>
-  <input id="y"/>
+    <input id="y"/>
     <input id="sonuc" name="sonuc"/>
     <input type="submit" value="Göster"/>
   </form>
