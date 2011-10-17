@@ -1,61 +1,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
+"http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<head>
-  <title>JQuery maphilight documentation</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-  <script type="text/javascript" src="js/jquery.maphilight.js"></script>
-  
-  <script>
-          $(function() {
-              $('.map').maphilight({fade: false});
-          });
-  </script>
-  <!-- x ve y al -->
-  <script type="text/javascript" language=javascript>
-  function FindPosition(oElement)
-  {
-    if(typeof( oElement.offsetParent ) != "undefined")
-    {
-      for(var posX = 0, posY = 0; oElement; oElement = oElement.offsetParent)
-      {
-        posX += oElement.offsetLeft;
-        posY += oElement.offsetTop;
-      }
-        return [ posX, posY ];
-      }
-      else
-      {
-        return [ oElement.x, oElement.y ];
-      }
-  }
+  <head>
+    <title>JQuery maphilight documentation</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.maphilight.js"></script>
 
-  function GetCoordinates(e)
+    <script>
+      $(function() {
+        $('.map').maphilight({fade: false});
+      });
+    </script>
+    <!-- x ve y al -->
+    <script type="text/javascript" language=javascript>
+      function FindPosition(oElement)
+{
+  if(typeof( oElement.offsetParent ) != "undefined")
   {
-    var PosX = 0;
-    var PosY = 0;
-    var ImgPos;
-    ImgPos = FindPosition(myImg);
-    if (!e) var e = window.event;
-    if (e.pageX || e.pageY)
+    for(var posX = 0, posY = 0; oElement; oElement = oElement.offsetParent)
     {
-      PosX = e.pageX;
-      PosY = e.pageY;
+      posX += oElement.offsetLeft;
+      posY += oElement.offsetTop;
     }
-    else if (e.clientX || e.clientY)
-      {
-        PosX = e.clientX + document.body.scrollLeft
-          + document.documentElement.scrollLeft;
-        PosY = e.clientY + document.body.scrollTop
-          + document.documentElement.scrollTop;
-      }
-    PosX = PosX - ImgPos[0];
-    PosY = PosY - ImgPos[1];
-    document.getElementById("x").value = PosX;
-    document.getElementById("y").value = PosY;
+    return [ posX, posY ];
   }
+  else
+  {
+    return [ oElement.x, oElement.y ];
+  }
+}
+
+function GetCoordinates(e)
+{
+  var PosX = 0;
+  var PosY = 0;
+  var ImgPos;
+  ImgPos = FindPosition(myImg);
+  if (!e) var e = window.event;
+  if (e.pageX || e.pageY)
+  {
+    PosX = e.pageX;
+    PosY = e.pageY;
+  }
+  else if (e.clientX || e.clientY)
+  {
+    PosX = e.clientX + document.body.scrollLeft
+      + document.documentElement.scrollLeft;
+    PosY = e.clientY + document.body.scrollTop
+      + document.documentElement.scrollTop;
+  }
+  PosX = PosX - ImgPos[0];
+  PosY = PosY - ImgPos[1];
+  document.getElementById("x").value = PosX;
+  document.getElementById("y").value = PosY;
+}
 </script>
 
 
@@ -67,53 +67,53 @@
   <script type="text/javascript">
     var myImg = document.getElementById("myImgId");
     myImg.onmousedown = GetCoordinates;
-  </script>
+    </script>
     <form action="show.php" method="post">
-    <map name="resim">
-    <input id="gizli_deger" type="hidden" value="4,3,62,9,54,24,17,37,3,3;76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25"/>
-    <p>
-      <area  shape="poly"  alt="sec1"  coords="4,3,62,9,54,24,17,37,3,3;76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25" />
-    </p>
-    </map>
-    <tr>
-    <table>
-	<tr>
-		<td rowspan=2>
-			<div id="ornekKap"></div>
-			<img id="pointer_div"  src="isaretsiz.jpg" usemap="#resim" onclick="point_it(event)">
-		</td>
-	</tr>
+      <map name="resim">
+        <input id="gizli_deger" type="hidden" value="4,3,62,9,54,24,17,37,3,3;76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25"/>
+        <p>
+        <area  shape="poly"  alt="sec1"  coords="4,3,62,9,54,24,17,37,3,3;76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25" />
+        </p>
+      </map>
+      <tr>
+        <table>
+          <tr>
+            <td rowspan=2>
+              <div id="ornekKap"></div>
+              <img id="pointer_div"  src="isaretsiz.jpg" usemap="#resim" onclick="point_it(event)">
+            </td>
+          </tr>
 
-		
-    
-<!--
-    <input id="x" name="x"/>
-    <input id="y" name="y"/>
--->
-    
-   
-	   <tr>
-		<td>
-          <textarea  rows="10" cols="45">Hastalığı tanımlayınız.</textarea>
-          <textarea  rows="10" cols="45">Sonucu giriniz.</textarea>
-		</td>
-	</tr>
-</table>
-</tr>
-   
-    <input id="sonuc" name="sonuc"/>
-    <input type="submit" value="Sonuc"/> 
-  
- 
-<script>
-    $("p").click(function () {
-      var htmlStr = $("#gizli_deger").val();
-      $("#sonuc").val(htmlStr);
-    });
 
-    $("img").click(function () {
-      $("#sonuc").val("");
-    });
-</script>
-</body>
-</html>
+
+          <!--
+          <input id="x" name="x"/>
+          <input id="y" name="y"/>
+          -->
+
+
+          <tr>
+            <td>
+              <textarea  rows="10" cols="45">Hastalığı tanımlayınız.</textarea>
+              <textarea  rows="10" cols="45">Sonucu giriniz.</textarea>
+            </td>
+          </tr>
+        </table>
+      </tr>
+
+      <input id="sonuc" name="sonuc"/>
+      <input type="submit" value="Sonuc"/> 
+
+
+      <script>
+        $("p").click(function () {
+          var htmlStr = $("#gizli_deger").val();
+          $("#sonuc").val(htmlStr);
+        });
+
+        $("img").click(function () {
+          $("#sonuc").val("");
+        });
+      </script>
+    </body>
+  </html>
