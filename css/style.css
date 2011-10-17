@@ -1,0 +1,25 @@
+html{background:lightgrey}
+body{background:white;
+	margin:5em;
+	padding:3em;
+	box-shadow: #555 0px 0px 18px;  
+	-moz-box-shadow: #555 0px 0px 18px;  
+	-webkit-box-shadow: #555 0px 0px 18px;
+	text-align:center;}
+table{
+	box-shadow: #555 0px 0px 18px;  
+	-moz-box-shadow: #555 0px 0px 18px;  
+	-webkit-box-shadow: #555 0px 0px 18px;
+padding:2em;
+background:grey;
+font-size:14;
+text-align:left;
+margin:1em auto;
+margin-left:100px;
+margin-right:100px;
+}
+img{width:300px;}
+
+
+
+

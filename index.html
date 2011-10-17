@@ -2,10 +2,12 @@
    "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <title>jQuery maphilight documentation</title>
+  <title>JQuery maphilight documentation</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
-  <script type="text/javascript" src="../jquery.maphilight.js"></script>
+  <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="js/jquery.maphilight.js"></script>
+  
   <script>
           $(function() {
               $('.map').maphilight({fade: false});
@@ -55,28 +57,54 @@
     document.getElementById("y").value = PosY;
   }
 </script>
-<!-- end x ve y al -->
+
 
 </head>
 <style>p { cursor:pointer; }</style>
-<body style="background-color:white" padding="0" margin="0">
-  <img id="myImgId" class="map" src="isaretsiz.jpg" usemap="#resim">
+<body>
+  <h1>Bulgu Ekrani</h1><hr>
+
   <script type="text/javascript">
     var myImg = document.getElementById("myImgId");
     myImg.onmousedown = GetCoordinates;
   </script>
-  <form action="show.php" method="post">
+    <form action="show.php" method="post">
     <map name="resim">
     <input id="gizli_deger" type="hidden" value="4,3,62,9,54,24,17,37,3,3;76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25"/>
     <p>
       <area  shape="poly"  alt="sec1"  coords="4,3,62,9,54,24,17,37,3,3;76,25,69,44,74,68,98,83,113,64,114,36,97,24,77,25" />
     </p>
     </map>
+    <tr>
+    <table>
+	<tr>
+		<td rowspan=2>
+			<div id="ornekKap"></div>
+			<img id="pointer_div"  src="isaretsiz.jpg" usemap="#resim" onclick="point_it(event)">
+		</td>
+	</tr>
+
+		
+    
+<!--
     <input id="x" name="x"/>
     <input id="y" name="y"/>
+-->
+    
+   
+	   <tr>
+		<td>
+          <textarea  rows="10" cols="45">Hastalığı tanımlayınız.</textarea>
+          <textarea  rows="10" cols="45">Sonucu giriniz.</textarea>
+		</td>
+	</tr>
+</table>
+</tr>
+   
     <input id="sonuc" name="sonuc"/>
-    <input type="submit" value="Göster"/>
-  </form>
+    <input type="submit" value="Sonuc"/> 
+  
+ 
 <script>
     $("p").click(function () {
       var htmlStr = $("#gizli_deger").val();
